@@ -3,8 +3,8 @@
 ##########################################
 
 resource "aws_s3_bucket" "config" {
-  bucket = "${var.s3_bucket_name}"
-  tags = var.tags
+  bucket = var.s3_bucket_name
+  tags   = var.tags
 }
 
 resource "aws_s3_bucket_versioning" "config" {

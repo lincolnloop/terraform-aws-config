@@ -1,14 +1,13 @@
 variable "snapshot_delivery_frequency" {
-  type = string
+  type        = string
   description = "Delivery frequency for AWS Config"
-  default = "Three_Hours"
-  
+  default     = "Three_Hours"
 }
 
 variable "tags" {
   description = "Tags configuration for Cloudwatch"
   type        = map(string)
-  default     = {
+  default = {
     Application = "aws-config"
   }
 }
@@ -19,9 +18,9 @@ variable "s3_bucket_name" {
 }
 
 variable "s3_version_expiration" {
-  type = string
+  type        = string
   description = "Days to expirate the aws config logs on the S3 buckets"
-  default = "365"
+  default     = "365"
 }
 
 variable "sns_topic_arn" {
@@ -31,19 +30,19 @@ variable "sns_topic_arn" {
 }
 
 variable "prefix" {
-  type = string
+  type        = string
   description = "Prefix to use for naming resources"
-  default = "aws-config"
+  default     = "aws-config"
 }
 
 #IAM 
 
 variable "iam_role_services" {
-  type = list(string)
+  type    = list(string)
   default = ["config.amazonaws.com"]
 }
 variable "iam_role_name" {
-  type = string
+  type    = string
   default = "AWSConfigRole"
 }
 

@@ -68,16 +68,14 @@ resource "aws_config_configuration_recorder" "config" {
 }
 
 resource "aws_config_delivery_channel" "config" {
-  name             = "${var.prefix}-default"
-  s3_bucket_name   = aws_s3_bucket.config.bucket
-  sns_topic_arn    = var.sns_topic_arn != null ? var.sns_topic_arn : null
-
+  name           = "${var.prefix}-default"
+  depends_on     = [aws_config_configuration_recorder.config]
+  s3_bucket_name = aws_s3_bucket.config.bucket
+  sns_topic_arn  = var.sns_topic_arn != null ? var.sns_topic_arn : null
 
   snapshot_delivery_properties {
     delivery_frequency = var.snapshot_delivery_frequency
   }
-
-  depends_on = [aws_config_configuration_recorder.config]
 }
 
 resource "aws_config_configuration_recorder_status" "config" {
