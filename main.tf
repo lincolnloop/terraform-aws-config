@@ -7,7 +7,7 @@ data "aws_iam_policy_document" "config" {
   statement {
     actions = ["sts:AssumeRole"]
     principals {
-      identifiers = var.iam_role_services
+      identifiers = ["config.amazonaws.com"]
       type        = "Service"
     }
   }

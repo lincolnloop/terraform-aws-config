@@ -37,10 +37,6 @@ variable "prefix" {
 
 #IAM 
 
-variable "iam_role_services" {
-  type    = list(string)
-  default = ["config.amazonaws.com"]
-}
 variable "iam_role_name" {
   type    = string
   default = "AWSConfigRole"
@@ -49,9 +45,4 @@ variable "iam_role_name" {
 variable "iam_role_path" {
   type    = string
   default = "/service-role/"
-}
-
-variable "iam_managed_policy_arns" {
-  type    = list(string)
-  default = ["arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"]
 }

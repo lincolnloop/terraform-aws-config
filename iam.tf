@@ -10,7 +10,6 @@ resource "aws_iam_role" "config" {
 }
 
 resource "aws_iam_role_policy_attachment" "config" {
-  count      = length(var.iam_managed_policy_arns)
-  policy_arn = element(var.iam_managed_policy_arns, count.index)
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_ConfigRole"
   role       = aws_iam_role.config.name
 }
