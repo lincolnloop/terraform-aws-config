@@ -35,7 +35,13 @@ variable "prefix" {
   default     = "aws-config"
 }
 
-#IAM 
+#IAM
+
+variable "service_linked_role" {
+  type        = bool
+  description = "Create a service linked role for AWS Config"
+  default     = false
+}
 
 variable "iam_role_name" {
   type    = string

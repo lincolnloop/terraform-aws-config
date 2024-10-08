@@ -53,13 +53,18 @@ data "aws_iam_policy_document" "config_bucket_policy" {
   }
 }
 
+resource "aws_iam_service_linked_role" "this" {
+  count            = var.service_linked_role ? 1 : 0
+  aws_service_name = "config.amazonaws.com"
+}
+
 ##########################################
 #  Config Resources                      #
 ##########################################
 
 resource "aws_config_configuration_recorder" "config" {
   name     = "${var.prefix}-default"
-  role_arn = aws_iam_role.config.arn
+  role_arn = var.service_linked_role ? aws_iam_service_linked_role.this[0].arn : aws_iam_role.config[0].arn
 
   recording_group {
     all_supported                 = true
