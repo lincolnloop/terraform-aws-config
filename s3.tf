@@ -21,6 +21,9 @@ resource "aws_s3_bucket_lifecycle_configuration" "config" {
     noncurrent_version_expiration {
       noncurrent_days = var.s3_version_expiration
     }
+    filter {
+      prefix = "" # Apply to all objects
+    }
   }
 }
 
